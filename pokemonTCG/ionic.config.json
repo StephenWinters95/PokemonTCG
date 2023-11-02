@@ -1,0 +1,7 @@
+{
+  "name": "pokemonTCG",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

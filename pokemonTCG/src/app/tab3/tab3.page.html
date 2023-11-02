@@ -1,0 +1,1218 @@
+<ion-content>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        DUEL
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-card *ngIf="UserMain" class = cardOpp1>
+    <img alt="Silhouette of mountains" [src]= "OppPoPic"/>
+    <ion-card-header>
+      <ion-card-title>{{OppPoName}}</ion-card-title>
+      <ion-card-subtitle> HP {{OppPoHP2}} / {{OppPoHP}}</ion-card-subtitle>
+    </ion-card-header>
+    
+    <ion-card-content>
+      1:{{OppPoMove1}}
+      2:{{OppPoMove2}}
+    </ion-card-content>
+    
+  </ion-card>
+  
+  <div class = "Opp1" *ngIf="UserMain"> Opponents Prizes : {{Opp_Prize.length}}</div>
+  <div class = "Opp2" *ngIf="UserMain"> Opponents Hand : {{Opp_User_Hand.length}}</div>
+  <div class = "Opp3" *ngIf="UserMain"> Opponents Bench : {{Opp_Bench.length}}</div>
+  <div class = "Opp4" *ngIf="UserMain"> Opponents Deck : {{Opp_Deck.length}}</div>
+  
+
+
+
+  <ion-card *ngIf="UserMain" class = card1 >
+    <img alt="Silhouette of mountains" [src]="MainPoPic" />
+    <ion-card-header>
+      <ion-card-title>{{MainPoName}} </ion-card-title>
+      <ion-card-subtitle> HP {{MainPoHP2}} / {{MainPoHP}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      1:{{MainPoMove1}}
+      2:{{MainPoMove2}}
+    </ion-card-content>
+  
+  </ion-card>
+  
+  
+  
+  
+  
+
+  
+  <ion-button class = Hand *ngIf="UserMain" (click)="displayHand()"> Display Hand </ion-button>
+  <ion-button class = Bench *ngIf="UserMain" (click)="displayBench()"> Display Bench </ion-button>
+  <ion-button class= Duel *ngIf="DuelMain" (click)="gameBegins()">Duel</ion-button>
+  <ion-button class = attack1 *ngIf="UserMain" (click)="attack1()"> {{MainPoMove1}} </ion-button>
+  <ion-button class = attack2 *ngIf="UserMain" (click)="attack2()"> {{MainPoMove2}} </ion-button>
+  <ion-button class = BackButton *ngIf="BackButton" (click)="displayScreen()"> Back to Game </ion-button>
+  <ion-button class= Rules *ngIf="DuelMain" (click)="displayRules()"> See Rules</ion-button>
+  <ion-button class= Rules *ngIf="Back" (click)="displayRules()"> Main Screen</ion-button>
+  <ion-button class= DeckConfig *ngIf="DeckConfig" (click)="displayDeckConfig()"> Deck Config</ion-button>
+  
+  <!-- DISPLAY VALUES  -->
+  
+  
+  <div class = "User1" *ngIf="UserMain"> Players Prizes : {{User_Prize.length}}</div>
+  <div class = "User2" *ngIf="UserMain"> Players Hand : {{User_Hand.length}} </div>
+  <div class = "User3" *ngIf="UserMain"> Players Bench : {{Bench.length}} </div>
+  <div class = "User4" *ngIf="UserMain"> Players Deck : {{User_Deck.length}} </div>
+  
+  <!-- Dispaly Rules -->
+  
+  
+    <pre class = RulesHTML *ngIf="RulesHTML">
+    to play you select duel:
+  
+    the play are is set up and the decks are shuffled: 
+  
+    the players draw 7 cards each:
+  
+    a set amount of cards are chosen as prizes which are placed down (1-6):
+  
+    each player will put down a basic pokemon card - if there is no basic cards in the playes hand then the player will shuffle the deck and try again:
+  
+    after the first card is played each player may put as many basic pokemon down as they like on there bench whih has a capacity of 5:
+  
+    after each player has put there pokemon down, a coin if flipped to determine who goes first:
+  
+    during a players turn they frist draw a card, then they may evolve a pokemon as long as it is not the same turn as they placed it on the bench,
+    they may use a Trainer card, and they place one energy card on any of there active pokemon, there turn ends with there attack or they may pass to end there turn:
+  
+  
+  
+  
+  
+  
+  
+    Attacking: an attack cannot be performed if the pokemon is asleep or paralyzed, there is a coin toss if it is confused, if confused and tails then 10 damage to itself.
+         if heads then the attack persists, some attacks can cause health conditins, but otherwise the attack is just reduced from the HP of the other pokemon after 
+         applying weakness and resistance.
+    A pokemon will have a few moves to which it can attack with each with diffrent energy requirements, and attack damage and soometimes a condition.
+    Each of these conditions will be diffrent depending on the attack.A health conditioon could be subject to a coin flip or not.
+    
+    When an attack is done if the defending pokemon has been knocked out, they and all the energy cards attached will go to the dicard pile.
+    The main player will recieve one of there there prizes to choose from 
+    If there is another pokemon card in the bench the game continues and the defeated pokemon is replaced by another of the opponents choice
+    
+    The game continues until one person runs out of usable pokemon or the main player wins all there prize cards.
+    
+    If a person Runs out of Cards then that person looses
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </pre>
+  
+  
+  <!-- HAND CARDS  -->
+  
+  
+  
+  <ion-card *ngIf="HandCards[0]" class = Hand1>
+      <img alt= " help " [src]= "allPokemon[User_Hand[0]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[0]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[0]].HP2}} / {{allPokemon[User_Hand[0]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench2 *ngIf="HandButtons[0]" (click)="PlaceOnBench(0)"> {{HandButValues[0]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[0]].Move1}}
+        2:{{allPokemon[User_Hand[0]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  <ion-card *ngIf="HandCards[1]" class = Hand2>
+      <img alt="  " [src]= "allPokemon[User_Hand[1]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[1]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[1]].HP2}} / {{allPokemon[User_Hand[1]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench3 *ngIf="HandButtons[1]" (click)="PlaceOnBench(1)"> {{HandButValues[1]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[1]].Move1}}
+        2:{{allPokemon[User_Hand[1]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+  <ion-card *ngIf="HandCards[2]" class = Hand3>
+      <img alt="  " [src]= "allPokemon[User_Hand[2]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[2]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[2]].HP2}} / {{allPokemon[User_Hand[2]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench4 *ngIf="HandButtons[2]" (click)="PlaceOnBench(2)"> {{HandButValues[2]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[2]].Move1}}
+        2:{{allPokemon[User_Hand[2]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+  <ion-card *ngIf="HandCards[3]" class = Hand4>
+      <img alt="  " [src]= "allPokemon[User_Hand[3]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[3]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[3]].HP2}} / {{allPokemon[User_Hand[3]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench5 *ngIf="HandButtons[3]" (click)="PlaceOnBench(3)"> {{HandButValues[3]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[3]].Move1}}
+        2:{{allPokemon[User_Hand[3]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  <ion-card *ngIf="HandCards[4]" class = Hand5>
+      <img alt="  " [src]= "allPokemon[User_Hand[4]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[4]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[4]].HP2}} / {{allPokemon[User_Hand[4]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench6 *ngIf="HandButtons[4]" (click)="PlaceOnBench(4)"> {{HandButValues[4]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[4]].Move1}}
+        2:{{allPokemon[User_Hand[4]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+  <ion-card *ngIf="HandCards[5]" class = Hand6>
+      <img alt=" " [src]= "allPokemon[User_Hand[5]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[5]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[5]].HP2}} / {{allPokemon[User_Hand[5]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench7 *ngIf="HandButtons[5]" (click)="PlaceOnBench(5)"> {{HandButValues[5]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[5]].Move1}}
+        2:{{allPokemon[User_Hand[5]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+  
+  <ion-card *ngIf="HandCards[6]" class = Hand7>
+      <img alt="  " [src]= "allPokemon[User_Hand[6]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[6]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[6]].HP2}} / {{allPokemon[User_Hand[6]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench8 *ngIf="HandButtons[6]" (click)="PlaceOnBench(6)"> {{HandButValues[6]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[6]].Move1}}
+        2:{{allPokemon[User_Hand[6]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+  <ion-card *ngIf="HandCards[7]" class = Hand8>
+      <img alt="  " [src]= "allPokemon[User_Hand[7]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[7]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[7]].HP2}} / {{allPokemon[User_Hand[7]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench9 *ngIf="HandButtons[7]" (click)="PlaceOnBench(7)"> {{HandButValues[7]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[7]].Move1}}
+        2:{{allPokemon[User_Hand[7]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+  <ion-card *ngIf="HandCards[8]" class = Hand9>
+      <img alt="  " [src]= "allPokemon[User_Hand[8]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[8]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[8]].HP2}} / {{allPokemon[User_Hand[8]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench10 *ngIf="HandButtons[8]" (click)="PlaceOnBench(8)"> {{HandButValues[8]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[8]].Move1}}
+        2:{{allPokemon[User_Hand[8]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+    <ion-card *ngIf="HandCards[9]" class = Hand10>
+      <img alt="  " [src]= "allPokemon[User_Hand[9]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[User_Hand[9]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[User_Hand[9]].HP2}} / {{allPokemon[User_Hand[9]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench11 *ngIf="HandButtons[9]" (click)="PlaceOnBench(9)"> {{HandButValues[9]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[User_Hand[9]].Move1}}
+        2:{{allPokemon[User_Hand[9]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+    
+  <!-- BENCH CARDS  -->
+  
+  
+    <ion-card *ngIf="User_Bench[0]" class = Hand1>
+      <img alt="  " [src]= "allPokemon[Bench[0]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[Bench[0]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[Bench[0]].HP2}} / {{allPokemon[Bench[0]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench2 *ngIf="HandButtons[0]" (click)="PlaceOnBench(0)"> {{HandButValues[0]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[Bench[0]].Move1}}
+        2:{{allPokemon[Bench[0]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  <ion-card *ngIf="User_Bench[1]" class = Hand2>
+      <img alt="  " [src]= "allPokemon[Bench[1]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[Bench[1]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[Bench[1]].HP2}} / {{allPokemon[Bench[1]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench2 *ngIf="HandButtons[1]" (click)="PlaceOnBench(1)"> {{HandButValues[1]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[Bench[1]].Move1}}
+        2:{{allPokemon[Bench[1]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+  <ion-card *ngIf="User_Bench[2]" class = Hand3>
+      <img alt="  " [src]= "allPokemon[Bench[2]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[Bench[2]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[Bench[2]].HP2}} / {{allPokemon[Bench[2]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench2 *ngIf="HandButtons[2]" (click)="PlaceOnBench(2)"> {{HandButValues[2]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[Bench[2]].Move1}}
+        2:{{allPokemon[Bench[2]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+  <ion-card *ngIf="User_Bench[3]" class = Hand4>
+      <img alt="  " [src]= "allPokemon[Bench[3]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[Bench[3]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[Bench[3]].HP2}} / {{allPokemon[Bench[3]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench2 *ngIf="HandButtons[3]" (click)="PlaceOnBench(3)"> {{HandButValues[3]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[Bench[3]].Move1}}
+        2:{{allPokemon[Bench[3]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  <ion-card *ngIf="User_Bench[4]" class = Hand5>
+      <img alt="  " [src]= "allPokemon[Bench[4]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[Bench[4]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[Bench[4]].HP2}} / {{allPokemon[Bench[4]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class = Bench2 *ngIf="HandButtons[4]" (click)="PlaceOnBench(4)"> {{HandButValues[4]}} </ion-button>
+      
+      <ion-card-content>
+        1:{{allPokemon[Bench[4]].Move1}}
+        2:{{allPokemon[Bench[4]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+  
+  <ion-card *ngIf="User_Bench[5]" class = Hand6>
+      <img alt=" " [src]= "allPokemon[Bench[5]].picURL"/>
+      <ion-card-header>
+        <ion-card-title>{{allPokemon[Bench[5]].name}}</ion-card-title>
+        <ion-card-subtitle> HP {{allPokemon[Bench[5]].HP2}} / {{allPokemon[Bench[5]].HP}}</ion-card-subtitle>
+      </ion-card-header>
+      
+      <ion-card-content>
+        1:{{allPokemon[Bench[5]].Move1}}
+        2:{{allPokemon[Bench[5]].Move3}}
+      </ion-card-content>
+      
+    </ion-card>
+  
+  
+    <ion-card *ngIf="UserMain" class = MsgBox>
+      <ion-card-header>
+        <ion-card-title>Game Play</ion-card-title>
+        <ion-card-subtitle> ----------------------   </ion-card-subtitle>
+      </ion-card-header>
+  
+      <ion-card-content> 
+        8: {{Msg[7]}}
+      </ion-card-content> 
+  
+      <ion-card-content> 
+        7: {{Msg[6]}}
+      </ion-card-content> 
+      
+      <ion-card-content> 
+        6: {{Msg[5]}}
+      </ion-card-content> 
+  
+      <ion-card-content>
+        5: {{Msg[4]}}
+      </ion-card-content>
+      <ion-card-content> 
+        4: {{Msg[3]}}
+      </ion-card-content>
+      <ion-card-content> 
+        3: {{Msg[2]}}
+      </ion-card-content>
+      <ion-card-content> 
+        2: {{Msg[1]}}
+      </ion-card-content>
+      <ion-card-content> 
+        1: {{Msg[0]}}
+  
+      </ion-card-content>
+    </ion-card>
+  
+  
+  
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!--///////////////////////////////////// Deck Config Section  /////////////////////////////////////////////-->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <div class = "DeckCards" *ngIf="DeckConfig2"> Number Of cards in Deck : {{User_Deck.length}} / 60</div>
+  
+  
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(0)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(0)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[0].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[0].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(1)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(1)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[1].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[1].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(2)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(2)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[2].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[2].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(3)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(3)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[3].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[3].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(4)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(4)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[4].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[4].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(5)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(5)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[5].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[5].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(6)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(6)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[6].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[6].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(7)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(7)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[7].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[7].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(8)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(8)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[8].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[8].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(9)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(9)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[9].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[9].amount}} </div>
+  
+    <ion-button class = Up10 *ngIf="DeckConfig2" (click)="Up(10)"> +1  </ion-button>
+    <ion-button class = Down10 *ngIf="DeckConfig2" (click)="Down(10)"> -1 </ion-button>
+    <div class = "Name10" *ngIf="DeckConfig2" > {{allPokemon[10].name}} </div>
+    <div class = "Amount10" *ngIf="DeckConfig2" > {{allPokemon[10].amount}} </div>
+  
+    <ion-button class = Up11 *ngIf="DeckConfig2" (click)="Up(11)"> +1  </ion-button>
+    <ion-button class = Down11 *ngIf="DeckConfig2" (click)="Down(11)"> -1 </ion-button>
+    <div class = "Name11" *ngIf="DeckConfig2" > {{allPokemon[11].name}} </div>
+    <div class = "Amount11" *ngIf="DeckConfig2" > {{allPokemon[11].amount}} </div>
+  
+    <ion-button class = Up12 *ngIf="DeckConfig2" (click)="Up(12)"> +1  </ion-button>
+    <ion-button class = Down12 *ngIf="DeckConfig2" (click)="Down(12)"> -1 </ion-button>
+    <div class = "Name12" *ngIf="DeckConfig2" > {{allPokemon[12].name}} </div>
+    <div class = "Amount12" *ngIf="DeckConfig2" > {{allPokemon[12].amount}} </div>
+  
+    <ion-button class = Up13 *ngIf="DeckConfig2" (click)="Up(13)"> +1  </ion-button>
+    <ion-button class = Down13 *ngIf="DeckConfig2" (click)="Down(13)"> -1 </ion-button>
+    <div class = "Name13" *ngIf="DeckConfig2" > {{allPokemon[13].name}} </div>
+    <div class = "Amount13" *ngIf="DeckConfig2" > {{allPokemon[13].amount}} </div>
+  
+    <ion-button class = Up14 *ngIf="DeckConfig2" (click)="Up(14)"> +1  </ion-button>
+    <ion-button class = Down14 *ngIf="DeckConfig2" (click)="Down(14)"> -1 </ion-button>
+    <div class = "Name14" *ngIf="DeckConfig2" > {{allPokemon[14].name}} </div>
+    <div class = "Amount14" *ngIf="DeckConfig2" > {{allPokemon[14].amount}} </div>
+  
+    <ion-button class = Up15 *ngIf="DeckConfig2" (click)="Up(15)"> +1  </ion-button>
+    <ion-button class = Down15 *ngIf="DeckConfig2" (click)="Down(15)"> -1 </ion-button>
+    <div class = "Name15" *ngIf="DeckConfig2" > {{allPokemon[15].name}} </div>
+    <div class = "Amount15" *ngIf="DeckConfig2" > {{allPokemon[15].amount}} </div>
+  
+    <ion-button class = Up16 *ngIf="DeckConfig2" (click)="Up(16)"> +1  </ion-button>
+    <ion-button class = Down16 *ngIf="DeckConfig2" (click)="Down(16)"> -1 </ion-button>
+    <div class = "Name16" *ngIf="DeckConfig2" > {{allPokemon[16].name}} </div>
+    <div class = "Amount16" *ngIf="DeckConfig2" > {{allPokemon[16].amount}} </div>
+  
+    <ion-button class = Up17 *ngIf="DeckConfig2" (click)="Up(17)"> +1  </ion-button>
+    <ion-button class = Down17 *ngIf="DeckConfig2" (click)="Down(17)"> -1 </ion-button>
+    <div class = "Name17" *ngIf="DeckConfig2" > {{allPokemon[17].name}} </div>
+    <div class = "Amount17" *ngIf="DeckConfig2" > {{allPokemon[17].amount}} </div>
+  
+    <ion-button class = Up18 *ngIf="DeckConfig2" (click)="Up(18)"> +1  </ion-button>
+    <ion-button class = Down18 *ngIf="DeckConfig2" (click)="Down(18)"> -1 </ion-button>
+    <div class = "Name18" *ngIf="DeckConfig2" > {{allPokemon[18].name}} </div>
+    <div class = "Amount18" *ngIf="DeckConfig2" > {{allPokemon[18].amount}} </div>
+  
+    <ion-button class = Up19 *ngIf="DeckConfig2" (click)="Up(19)"> +1  </ion-button>
+    <ion-button class = Down19 *ngIf="DeckConfig2" (click)="Down(19)"> -1 </ion-button>
+    <div class = "Name19" *ngIf="DeckConfig2" > {{allPokemon[19].name}} </div>
+    <div class = "Amount19" *ngIf="DeckConfig2" > {{allPokemon[19].amount}} </div>
+  
+    <ion-button class = Up20 *ngIf="DeckConfig2" (click)="Up(20)"> +1  </ion-button>
+    <ion-button class = Down20 *ngIf="DeckConfig2" (click)="Down(20)"> -1 </ion-button>
+    <div class = "Name20" *ngIf="DeckConfig2" > {{allPokemon[20].name}} </div>
+    <div class = "Amount20" *ngIf="DeckConfig2" > {{allPokemon[20].amount}} </div>
+   
+    <ion-button class = Up21 *ngIf="DeckConfig2" (click)="Up(21)"> +1  </ion-button>
+    <ion-button class = Down21 *ngIf="DeckConfig2" (click)="Down(21)"> -1 </ion-button>
+    <div class = "Name21" *ngIf="DeckConfig2" > {{allPokemon[21].name}} </div>
+    <div class = "Amount21" *ngIf="DeckConfig2" > {{allPokemon[21].amount}} </div>
+  
+    <ion-button class = Up22 *ngIf="DeckConfig2" (click)="Up(22)"> +1  </ion-button>
+    <ion-button class = Down22 *ngIf="DeckConfig2" (click)="Down(22)"> -1 </ion-button>
+    <div class = "Name22" *ngIf="DeckConfig2" > {{allPokemon[22].name}} </div>
+    <div class = "Amount22" *ngIf="DeckConfig2" > {{allPokemon[22].amount}} </div>
+  
+    <ion-button class = Up23 *ngIf="DeckConfig2" (click)="Up(23)"> +1  </ion-button>
+    <ion-button class = Down23 *ngIf="DeckConfig2" (click)="Down(23)"> -1 </ion-button>
+    <div class = "Name23" *ngIf="DeckConfig2" > {{allPokemon[23].name}} </div>
+    <div class = "Amount23" *ngIf="DeckConfig2" > {{allPokemon[23].amount}} </div>
+  
+    <ion-button class = Up24 *ngIf="DeckConfig2" (click)="Up(24)"> +1  </ion-button>
+    <ion-button class = Down24 *ngIf="DeckConfig2" (click)="Down(24)"> -1 </ion-button>
+    <div class = "Name24" *ngIf="DeckConfig2" > {{allPokemon[24].name}} </div>
+    <div class = "Amount24" *ngIf="DeckConfig2" > {{allPokemon[24].amount}} </div>
+  
+    <ion-button class = Up25 *ngIf="DeckConfig2" (click)="Up(25)"> +1  </ion-button>
+    <ion-button class = Down25 *ngIf="DeckConfig2" (click)="Down(25)"> -1 </ion-button>
+    <div class = "Name25" *ngIf="DeckConfig2" > {{allPokemon[25].name}} </div>
+    <div class = "Amount25" *ngIf="DeckConfig2" > {{allPokemon[25].amount}} </div>
+  
+    <ion-button class = Up26 *ngIf="DeckConfig2" (click)="Up(26)"> +1  </ion-button>
+    <ion-button class = Down26 *ngIf="DeckConfig2" (click)="Down(26)"> -1 </ion-button>
+    <div class = "Name26" *ngIf="DeckConfig2" > {{allPokemon[26].name}} </div>
+    <div class = "Amount26" *ngIf="DeckConfig2" > {{allPokemon[26].amount}} </div>
+  
+    <ion-button class = Up27 *ngIf="DeckConfig2" (click)="Up(27)"> +1  </ion-button>
+    <ion-button class = Down27 *ngIf="DeckConfig2" (click)="Down(27)"> -1 </ion-button>
+    <div class = "Name27" *ngIf="DeckConfig2" > {{allPokemon[27].name}} </div>
+    <div class = "Amount27" *ngIf="DeckConfig2" > {{allPokemon[27].amount}} </div>
+  
+    <ion-button class = Up28 *ngIf="DeckConfig2" (click)="Up(28)"> +1  </ion-button>
+    <ion-button class = Down28 *ngIf="DeckConfig2" (click)="Down(28)"> -1 </ion-button>
+    <div class = "Name28" *ngIf="DeckConfig2" > {{allPokemon[28].name}} </div>
+    <div class = "Amount28" *ngIf="DeckConfig2" > {{allPokemon[28].amount}} </div>
+  
+    <ion-button class = Up29 *ngIf="DeckConfig2" (click)="Up(29)"> +1  </ion-button>
+    <ion-button class = Down29 *ngIf="DeckConfig2" (click)="Down(29)"> -1 </ion-button>
+    <div class = "Name29" *ngIf="DeckConfig2" > {{allPokemon[29].name}} </div>
+    <div class = "Amount29" *ngIf="DeckConfig2" > {{allPokemon[29].amount}} </div>
+  
+    <ion-button class = Up30 *ngIf="DeckConfig2" (click)="Up(30)"> +1  </ion-button>
+    <ion-button class = Down30 *ngIf="DeckConfig2" (click)="Down(30)"> -1 </ion-button>
+    <div class = "Name30" *ngIf="DeckConfig2" > {{allPokemon[30].name}} </div>
+    <div class = "Amount30" *ngIf="DeckConfig2" > {{allPokemon[30].amount}} </div>
+   
+    <ion-button class = Up31 *ngIf="DeckConfig2" (click)="Up(31)"> +1  </ion-button>
+    <ion-button class = Down31 *ngIf="DeckConfig2" (click)="Down(31)"> -1 </ion-button>
+    <div class = "Name31" *ngIf="DeckConfig2" > {{allPokemon[31].name}} </div>
+    <div class = "Amount31" *ngIf="DeckConfig2" > {{allPokemon[31].amount}} </div>
+  
+    <ion-button class = Up32 *ngIf="DeckConfig2" (click)="Up(32)"> +1  </ion-button>
+    <ion-button class = Down32 *ngIf="DeckConfig2" (click)="Down(32)"> -1 </ion-button>
+    <div class = "Name32" *ngIf="DeckConfig2" > {{allPokemon[32].name}} </div>
+    <div class = "Amount32" *ngIf="DeckConfig2" > {{allPokemon[32].amount}} </div>
+  
+    <ion-button class = Up33 *ngIf="DeckConfig2" (click)="Up(33)"> +1  </ion-button>
+    <ion-button class = Down33 *ngIf="DeckConfig2" (click)="Down(33)"> -1 </ion-button>
+    <div class = "Name33" *ngIf="DeckConfig2" > {{allPokemon[33].name}} </div>
+    <div class = "Amount33" *ngIf="DeckConfig2" > {{allPokemon[33].amount}} </div>
+  
+    <ion-button class = Up34 *ngIf="DeckConfig2" (click)="Up(34)"> +1  </ion-button>
+    <ion-button class = Down34 *ngIf="DeckConfig2" (click)="Down(34)"> -1 </ion-button>
+    <div class = "Name34" *ngIf="DeckConfig2" > {{allPokemon[34].name}} </div>
+    <div class = "Amount34" *ngIf="DeckConfig2" > {{allPokemon[34].amount}} </div>
+  
+    <ion-button class = Up35 *ngIf="DeckConfig2" (click)="Up(35)"> +1  </ion-button>
+    <ion-button class = Down35 *ngIf="DeckConfig2" (click)="Down(35)"> -1 </ion-button>
+    <div class = "Name35" *ngIf="DeckConfig2" > {{allPokemon[35].name}} </div>
+    <div class = "Amount35" *ngIf="DeckConfig2" > {{allPokemon[35].amount}} </div>
+  
+    <ion-button class = Up36 *ngIf="DeckConfig2" (click)="Up(36)"> +1  </ion-button>
+    <ion-button class = Down36 *ngIf="DeckConfig2" (click)="Down(36)"> -1 </ion-button>
+    <div class = "Name36" *ngIf="DeckConfig2" > {{allPokemon[36].name}} </div>
+    <div class = "Amount36" *ngIf="DeckConfig2" > {{allPokemon[36].amount}} </div>
+  
+    <ion-button class = Up37 *ngIf="DeckConfig2" (click)="Up(37)"> +1  </ion-button>
+    <ion-button class = Down37 *ngIf="DeckConfig2" (click)="Down(37)"> -1 </ion-button>
+    <div class = "Name37" *ngIf="DeckConfig2" > {{allPokemon[37].name}} </div>
+    <div class = "Amount37" *ngIf="DeckConfig2" > {{allPokemon[37].amount}} </div>
+  
+    <ion-button class = Up38 *ngIf="DeckConfig2" (click)="Up(38)"> +1  </ion-button>
+    <ion-button class = Down38 *ngIf="DeckConfig2" (click)="Down(38)"> -1 </ion-button>
+    <div class = "Name38" *ngIf="DeckConfig2" > {{allPokemon[38].name}} </div>
+    <div class = "Amount38" *ngIf="DeckConfig2" > {{allPokemon[38].amount}} </div>
+  
+    <ion-button class = Up39 *ngIf="DeckConfig2" (click)="Up(39)"> +1  </ion-button>
+    <ion-button class = Down39 *ngIf="DeckConfig2" (click)="Down(39)"> -1 </ion-button>
+    <div class = "Name39" *ngIf="DeckConfig2" > {{allPokemon[39].name}} </div>
+    <div class = "Amount39" *ngIf="DeckConfig2" > {{allPokemon[39].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(40)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(40)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[40].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[40].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(41)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(41)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[41].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[1].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(42)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(42)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[42].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[42].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(43)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(43)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[43].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[43].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(44)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(44)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[44].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[44].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(45)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(45)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[45].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[45].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(46)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(46)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[46].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[46].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(47)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(47)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[47].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[47].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(48)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(48)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[48].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[48].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(49)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(49)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[49].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[49].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(50)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(50)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[50].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[50].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(51)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(51)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[51].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[51].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(52)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(52)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[52].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[52].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(53)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(53)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[53].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[53].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(54)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(54)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[54].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[54].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(55)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(55)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[55].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[55].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(56)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(56)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[56].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[56].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(57)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(57)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[57].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[57].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(58)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(58)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[58].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[58].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(59)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(59)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[59].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[59].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(60)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(60)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[60].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[60].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(61)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(61)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[61].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[61].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(62)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(62)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[62].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[62].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(63)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(63)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[63].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[63].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(64)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(64)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[64].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[64].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(65)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(65)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[65].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[65].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(66)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(66)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[66].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[66].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(67)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(67)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[67].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[67].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(68)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(68)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[68].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[68].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(69)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(69)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[69].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[69].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(70)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(70)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[70].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[70].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(71)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(71)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[71].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[71].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(72)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(72)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[72].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[72].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(73)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(73)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[73].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[73].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(74)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(74)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[74].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[74].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(75)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(75)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[75].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[75].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(76)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(76)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[76].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[76].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(77)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(77)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[77].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[77].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(78)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(78)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[78].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[78].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(79)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(79)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[79].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[79].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(80)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(80)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[80].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[80].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(81)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(81)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[81].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[81].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(82)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(82)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[82].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[82].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(83)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(83)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[83].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[83].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(84)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(84)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[84].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[84].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(85)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(85)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[85].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[85].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(86)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(86)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[86].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[86].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(87)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(87)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[87].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[87].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(88)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(88)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[88].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[88].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(89)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(89)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[89].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[89].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(90)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(90)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[90].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[90].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(91)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(91)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[91].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[91].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(92)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(92)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[92].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[92].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(93)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(93)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[93].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[93].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(94)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(94)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[94].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[94].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(95)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(95)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[95].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[95].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(96)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(96)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[96].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[96].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(97)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(97)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[97].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[97].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(98)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(98)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[98].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[98].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(99)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(99)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[99].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[99].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(100)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(100)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[100].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[100].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(101)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(101)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[101].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[101].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(102)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(102)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[102].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[102].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(103)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(103)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[103].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[103].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(104)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(104)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[104].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[104].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(105)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(105)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[105].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[105].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(106)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(106)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[106].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[106].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(107)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(107)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[107].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[107].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(108)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(108)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[108].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[108].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(109)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(109)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[109].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[109].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(110)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(110)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[110].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[110].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(111)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(111)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[111].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[111].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(112)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(112)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[112].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[112].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(113)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(113)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[113].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[113].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(114)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(114)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[114].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[114].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(115)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(115)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[115].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[115].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(116)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(116)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[116].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[116].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(117)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(117)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[117].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[117].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(118)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(118)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[118].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[118].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(119)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(119)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[119].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[119].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(120)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(120)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[120].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[120].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(121)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(121)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[121].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[121].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(122)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(122)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[122].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[122].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(123)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(123)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[123].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[123].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(124)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(124)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[124].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[124].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(125)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(125)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[125].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[125].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(126)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(126)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[126].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[126].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(127)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(127)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[127].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[127].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(128)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(128)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[128].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[128].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(129)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(129)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[129].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[129].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(130)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(130)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[130].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[130].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(131)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(131)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[131].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[131].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(132)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(132)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[132].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[132].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(133)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(133)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[133].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[133].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(134)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(134)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[134].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[134].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(135)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(135)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[135].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[135].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(136)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(136)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[136].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[136].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(137)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(137)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[137].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[137].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(138)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(138)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[138].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[138].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(139)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(139)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[139].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[139].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(140)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(140)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[140].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[140].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(141)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(141)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[141].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[141].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(142)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(142)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[142].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[142].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(143)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(143)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[143].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[143].amount}} </div>
+  
+    <ion-button class = Up4 *ngIf="DeckConfig2" (click)="Up(144)"> +1  </ion-button>
+    <ion-button class = Down4 *ngIf="DeckConfig2" (click)="Down(144)"> -1 </ion-button>
+    <div class = "Name4" *ngIf="DeckConfig2" > {{allPokemon[144].name}} </div>
+    <div class = "Amount4" *ngIf="DeckConfig2" > {{allPokemon[144].amount}} </div>
+  
+    <ion-button class = Up5 *ngIf="DeckConfig2" (click)="Up(145)"> +1  </ion-button>
+    <ion-button class = Down5 *ngIf="DeckConfig2" (click)="Down(145)"> -1 </ion-button>
+    <div class = "Name5" *ngIf="DeckConfig2" > {{allPokemon[145].name}} </div>
+    <div class = "Amount5" *ngIf="DeckConfig2" > {{allPokemon[145].amount}} </div>
+  
+    <ion-button class = Up6 *ngIf="DeckConfig2" (click)="Up(146)"> +1  </ion-button>
+    <ion-button class = Down6 *ngIf="DeckConfig2" (click)="Down(146)"> -1 </ion-button>
+    <div class = "Name6" *ngIf="DeckConfig2" > {{allPokemon[146].name}} </div>
+    <div class = "Amount6" *ngIf="DeckConfig2" > {{allPokemon[146].amount}} </div>
+  
+    <ion-button class = Up7 *ngIf="DeckConfig2" (click)="Up(147)"> +1  </ion-button>
+    <ion-button class = Down7 *ngIf="DeckConfig2" (click)="Down(147)"> -1 </ion-button>
+    <div class = "Name7" *ngIf="DeckConfig2" > {{allPokemon[147].name}} </div>
+    <div class = "Amount7" *ngIf="DeckConfig2" > {{allPokemon[147].amount}} </div>
+  
+    <ion-button class = Up8 *ngIf="DeckConfig2" (click)="Up(148)"> +1  </ion-button>
+    <ion-button class = Down8 *ngIf="DeckConfig2" (click)="Down(148)"> -1 </ion-button>
+    <div class = "Name8" *ngIf="DeckConfig2" > {{allPokemon[148].name}} </div>
+    <div class = "Amount8" *ngIf="DeckConfig2" > {{allPokemon[148].amount}} </div>
+  
+    <ion-button class = Up9 *ngIf="DeckConfig2" (click)="Up(149)"> +1  </ion-button>
+    <ion-button class = Down9 *ngIf="DeckConfig2" (click)="Down(149)"> -1 </ion-button>
+    <div class = "Name9" *ngIf="DeckConfig2" > {{allPokemon[149].name}} </div>
+    <div class = "Amount9" *ngIf="DeckConfig2" > {{allPokemon[149].amount}} </div>
+
+    <ion-button class = Up0 *ngIf="DeckConfig2" (click)="Up(150)"> +1  </ion-button>
+    <ion-button class = Down0 *ngIf="DeckConfig2" (click)="Down(150)"> -1 </ion-button>
+    <div class = "Name0" *ngIf="DeckConfig2" > {{allPokemon[150].name}} </div>
+    <div class = "Amount0" *ngIf="DeckConfig2" > {{allPokemon[150].amount}} </div>
+
+    <ion-button class = Up1 *ngIf="DeckConfig2" (click)="Up(151)"> +1  </ion-button>
+    <ion-button class = Down1 *ngIf="DeckConfig2" (click)="Down(151)"> -1 </ion-button>
+    <div class = "Name1" *ngIf="DeckConfig2" > {{allPokemon[151].name}} </div>
+    <div class = "Amount1" *ngIf="DeckConfig2" > {{allPokemon[151].amount}} </div>
+  
+    <ion-button class = Up2 *ngIf="DeckConfig2" (click)="Up(152)"> +1  </ion-button>
+    <ion-button class = Down2 *ngIf="DeckConfig2" (click)="Down(152)"> -1 </ion-button>
+    <div class = "Name2" *ngIf="DeckConfig2" > {{allPokemon[152].name}} </div>
+    <div class = "Amount2" *ngIf="DeckConfig2" > {{allPokemon[152].amount}} </div>
+  
+    <ion-button class = Up3 *ngIf="DeckConfig2" (click)="Up(153)"> +1  </ion-button>
+    <ion-button class = Down3 *ngIf="DeckConfig2" (click)="Down(153)"> -1 </ion-button>
+    <div class = "Name3" *ngIf="DeckConfig2" > {{allPokemon[153].name}} </div>
+    <div class = "Amount3" *ngIf="DeckConfig2" > {{allPokemon[153].amount}} </div>
+  
+  
+    
+  
+  </ion-content>
