@@ -1,0 +1,529 @@
+.card1 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 350px;
+    height: 500px;
+    // position: absolute;
+    // top: 400px;
+    // margin-left:45%; 
+    // margin-right:auto;
+    
+  }
+    
+    .cardOpp1 {
+      /* Add shadows to create the "card" effect */
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      border-radius: 5px; /* 5px rounded corners */
+      width: 350px;
+      height: 500px;
+      // position: absolute;
+      // top: 50px;
+      // margin-left:45%; 
+      // margin-right:auto;
+    }
+  
+    .button2 {
+      /* Add shadows to create the "card" effect */
+      // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      // transition: 0.3s;
+      // border-radius: 5px; /* 5px rounded corners */
+      // width: 350px;
+      // height: 500px;
+      // position: absolute;
+      // top: 50px;
+      // margin-left:45%; 
+      // margin-right:auto;
+    }
+
+//     img {
+//       border-radius: 5px 5px 0 0;
+//       height: 120px; /* sets the image size*/
+//       width: 120px; /* also important */
+//     }
+  
+//     .attack2{
+//           /* Add shadows to create the "card" effect */
+//           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//           transition: 0.3s;
+//           border-radius: 5px; /* 5px rounded corners */
+//           width: 150px;
+//           height: 30px;
+//           position: absolute;
+//           margin-left:10%; 
+//           top: 600px;
+//     }
+  
+//     .attack1{
+//       /* Add shadows to create the "card" effect */
+//       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//       transition: 0.3s;
+//       border-radius: 5px; /* 5px rounded corners */
+//       width: 150px;
+//       height: 30px;
+//       position: absolute;
+//       margin-left:10%; 
+//       top: 550px;
+//   }
+  
+//   ion-button {
+//     --background: #93e9be;
+//     --background-hover: #9ce0be;
+//     --background-activated: #88f4be;
+//     --background-focused: #88f4be;
+  
+//     --color: rgb(0, 0, 0);
+  
+//     --border-radius: 0;
+//     --border-color: #000000;
+//     --border-style: solid;
+//     --border-width: 1px;
+  
+//     --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+  
+//     --ripple-color: rgb(22, 12, 163);
+  
+//     --padding-top: 10px;
+//     --padding-bottom: 10px;
+  
+//     position: absolute;
+//       top: 50%;
+//       left:50%; 
+//   }
+  
+//   .Opp1 {
+  
+//       transition: 0.3s;
+//       border-radius: 5px; /* 5px rounded corners */
+//       width: 70px;
+//       height: 30px;
+//       position: absolute;
+//       margin-left:60%; 
+//       top: 70px;
+//   }
+  
+//   .Opp2 {
+    
+//       transition: 0.3s;
+//       border-radius: 5px; /* 5px rounded corners */
+//       width: 70px;
+//       height: 30px;
+//       position: absolute;
+//       margin-left:60%; 
+//       top: 110px;
+//   }
+  
+//   .Opp3 {
+  
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 70px;
+//     height: 30px;
+//     position: absolute;
+//     margin-left:60%; 
+//     top: 150px;
+//   }
+  
+//   .Opp4 {
+  
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 70px;
+//     height: 30px;
+//     position: absolute;
+//     margin-left:60%; 
+//     top: 190px;
+//   }
+  
+//   .User1{
+    
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 70px;
+//     height: 30px;
+//     position: absolute;
+//     margin-left:60%; 
+//     top: 410px;
+//   }
+  
+//   .User2{
+    
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 70px;
+//     height: 30px;
+//     position: absolute;
+//     margin-left:60%; 
+//     top: 450px;
+//   }
+  
+//   .User3{
+    
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 70px;
+//     height: 30px;
+//     position: absolute;
+//     margin-left:60%; 
+//     top: 490px;
+//   }
+  
+//   .User4{
+    
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 70px;
+//     height: 30px;
+//     position: absolute;
+//     margin-left:60%; 
+//     top: 530px;
+//   }
+  
+//   .Hand{
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//       transition: 0.3s;
+//       border-radius: 5px; /* 5px rounded corners */
+//       width: 150px;
+//       height: 30px;
+//       position: absolute;
+//       //margin-right: 70%; 
+//       margin-left: -20%;
+//       // background-position: 40%;
+//       top: 550px;
+//   }
+  
+//   .Bench{
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//       transition: 0.3s;
+//       border-radius: 5px; /* 5px rounded corners */
+//       width: 150px;
+//       height: 30px;
+//       position: absolute;
+//       //margin-right: 70%; 
+//       margin-left: -20%;
+//       // background-position: 40%;
+//       top: 600px;
+//   }
+  
+  
+//   .BackButton{
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//       transition: 0.3s;
+//       border-radius: 5px; /* 5px rounded corners */
+//       width: 150px;
+//       height: 30px;
+//       position: absolute;
+//       //margin-right: 70%; 
+//       margin-left: -20%;
+//       // background-position: 40%;
+//       top: 300px;
+//   }
+  
+  
+  
+  
+  .Hand1 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 250px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    // position: absolute;
+    // top: 400px;
+    // left: 10px;
+  }
+  
+//   .Bench2 {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 30px;
+//     position: absolute;
+//     top: 680px;
+//     left: 20px;
+//   }
+  
+  
+  .Hand2 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 250px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    // position: absolute;
+    // top: 400px;
+    // left: 170px;
+  }
+  
+//   .Bench3 {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 30px;
+//     position: absolute;
+//     top: 680px;
+//     left: 180px;
+//   }
+  
+  .Hand3 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 250px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    // position: absolute;
+    // top: 400px;
+    // left: 330px;
+  }
+  
+//   .Bench4 {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 30px;
+//     position: absolute;
+//     top: 680px;
+//     left: 340px;
+//   }
+  
+  .Hand4 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 250px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    // position: absolute;
+    // top: 400px;
+    // left: 490px;
+  }
+  
+//   .Bench5 {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 30px;
+//     position: absolute;
+//     top: 680px;
+//     left: 500px;
+//   }
+  
+  .Hand5 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 250px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    // position: absolute;
+    // top: 400px;
+    // left: 650px;
+  }
+  
+//   .Bench6 {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 30px;
+//     position: absolute;
+//     top: 680px;
+//     left: 660px;
+//   }
+  
+  .Hand6 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 150px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+//   .Bench7 {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 30px;
+//     position: absolute;
+//     top: 680px;
+//     left: 820px;
+//   }
+  
+  .Hand7 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 150px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+//   .Bench8 {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 30px;
+//     position: absolute;
+//     top: 680px;
+//     left: 980px;
+//   }
+  
+  .Hand8 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 150px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+//   .Bench9 {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 30px;
+//     position: absolute;
+//     top: 680px;
+//     left: 1140px;
+//   }
+  
+  .Hand9 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 150px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+//   .Bench10 {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 30px;
+//     position: absolute;
+//     top: 680px;
+//     left: 1300px;
+//   }
+  
+  .Hand10 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 150px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  // .Rules {
+    /* Add shadows to create the "card" effect */
+    // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    // transition: 0.3s;
+    // border-radius: 5px; /* 5px rounded corners */
+    // width: 120px;
+    // height: 35px;
+    // position: absolute;
+    // top: 400px;
+    // left: 1450px;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  // }
+  
+  // .DeckConfig {
+  //   /* Add shadows to create the "card" effect */
+  //   // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  //   // transition: 0.3s;
+  //   // border-radius: 5px; /* 5px rounded corners */
+  //   // width: 120px;
+  //   // height: 35px;
+  //   // position: absolute;
+  //   // top: 400px;
+  //   // left: 1450px;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  //   text-center: center
+  // }
+
+.Duel {
+  /* Add shadows to create the "card" effect */
+  // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  // transition: 0.3s;
+  // border-radius: 5px; /* 5px rounded corners */
+  // width: 350px;
+  // height: 500px;
+  // position: absolute;
+  // top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+//   .DeckCards {
+    
+//       transition: 0.3s;
+//       border-radius: 5px; /* 5px rounded corners */
+//       width: 120px;
+//       height: 30px;
+//       position: absolute;
+//       margin-left:50%; 
+//       top: 100px;
+//   }
+  
+//   ion-content {
+//     --background: url('astronomy.jpg') no-repeat center center / cover;
+//     background-size: fill;
+//   }
+  
+//   .MsgBox {
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     border-radius: 5px; /* 5px rounded corners */
+//     width: 150px;
+//     height: 250px;
+//     // position: relative;
+//     top: 300px;
+//     left: 1250px;
+    
+

@@ -1,0 +1,64 @@
+
+<ion-button *ngIf = this.Buttons (click) = "show(1)" >See Theme Decks</ion-button>
+<ion-button *ngIf = this.Buttons (click) = "show(2)">See Custom Decks</ion-button>
+<ion-button *ngIf = this.Buttons (click) = "show(3)">Build New Deck</ion-button>
+<ion-button *ngIf = this.Buttons (click) = "show(4); check()">See Owned Cards</ion-button>
+<ion-button *ngIf= Back_But (click) = "back(1)"> back </ion-button>
+
+
+<ion-content *ngIf = "this.See_Theme_Decks">
+  <ion-list >
+    <ion-item *ngFor="let image of Theme_Deck_Images; let num = index">
+      <ion-button  class="size" (click) = display_deck(num,Theme_Decks)>
+        <ion-img [src]="image"></ion-img>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-content *ngIf = "this.See_Custom_Decks">
+  <ion-list >
+    <ion-item *ngFor="let image of Custom_Deck_Images; let num = index">
+      <ion-button  class="size" (click) = display_deck(num,Custom_Decks)>
+        <ion-img [src]="image"></ion-img>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-content *ngIf = "this.See_Display_Deck">
+  <ion-list >
+    <ion-item *ngFor="let image of Display_Deck; let i = index">
+      <ion-button  class="size" (click) = "log(i)">
+        <ion-img [src]="image.imageURL"></ion-img>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-content *ngIf = "this.See_Owned_Cards">
+  <ion-list >
+    <ion-item *ngFor="let image of OwnedCards;">
+      <ion-button  class="size">
+        <ion-img [src]="image.imageURL"></ion-img>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-item class="text-center" *ngIf = "this.Text_Input_Button">  <!-- experimental code from ai, uses handleInputChange method // also experimental-->
+  <ion-label position="stacked">Enter Deck Name</ion-label>
+  <ion-input (ionChange)="handleInputChange($event)"></ion-input>
+</ion-item>
+ 
+<ion-content *ngIf="this.Choose_Cards">
+  <ion-list>
+    <ion-item *ngFor="let image of OwnedCards;">
+      <ion-button slot="start" class="size"> - MINUS</ion-button>
+        <ion-button class="size">
+          <ion-img [src]="image.imageURL"></ion-img>
+        </ion-button>
+        <ion-button slot="end" class="size"> + PLUS</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
