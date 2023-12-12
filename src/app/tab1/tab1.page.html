@@ -1,0 +1,19 @@
+
+<ion-button *ngIf= Back_But (click) = "back()"> back </ion-button>
+
+<ng-container *ngFor="let set of AllSets">
+  <ion-button *ngIf="set.html_button" (click)="set.display(); update();">{{ set.SetName }}</ion-button>
+</ng-container>
+
+
+<ng-container *ngFor="let set of AllSets; let setIndex = index">
+  <ion-content *ngIf="set.display_set">
+    <ion-list>
+      <ion-item *ngFor="let image of set.Cards; let html_index = index">
+        <ion-button class="size" (click)="log(setIndex, html_index)">
+          <ion-img [src]="image.imageURL"></ion-img>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ng-container>
